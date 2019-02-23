@@ -1,0 +1,17 @@
+#! /usr/bin/env nix-shell
+#! nix-shell -i bash -p jq nix-prefetch-git
+
+set -eux
+
+scriptdir="$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)"
+
+versioninfo="$(nix-prefetch-git --no-deepClone https://github.com/google/kafel)"
+
+cat <<EOF > "$scriptdir/kafel-src.nix"
+{fetchgit}:
+fetchgit {
+  url    = "$(jq -r .url <<< "$versioninfo")";
+  rev    = "$(jq -r .rev <<< "$versioninfo")";
+  sha256 = "$(jq -r .sha256 <<< "$versioninfo")";
+}
+EOF

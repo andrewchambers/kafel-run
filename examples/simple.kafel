@@ -1,0 +1,17 @@
+POLICY simple {
+  ALLOW {
+    execve, fork, close, brk, access,
+    read, write, open, openat, newstat,
+    newfstat, newlstat, mmap, lseek, mprotect,
+    prctl, arch_prctl, set_tid_address,
+    rt_sigaction, rt_sigprocmask,
+    set_robust_list, prlimit64, exit_group,
+    chdir, fchdir, mkdir, rmdir, creat, link,
+    unlink, symlink, readlink, chmod, fchmod
+    getcwd
+  }
+}
+
+
+USE simple
+DEFAULT ERRNO(13)
