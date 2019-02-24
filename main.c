@@ -8,7 +8,7 @@
 #include <kafel.h>
 
 void usage() {
-  fprintf(stderr, "kafel-run [-I PATH]... -k kafel.policy -- PROG [ARGS..]\n");
+  fprintf(stderr, "kafel-run [-I PATH]... -k policy.kafel -- PROG [ARGS..]\n");
   exit(1);
 }
 
